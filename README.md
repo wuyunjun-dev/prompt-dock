@@ -30,16 +30,20 @@ PromptDock 是一个原生 macOS 菜单栏应用，用于把零散想法、Bug �
 - 主窗口支持拖拽调整大小，并限制在屏幕可见区域内。
 - 最大 Token 数支持手动输入。
 
-## 下载和安装
+## 下载和安装 macOS 版
 
 可以从 GitHub Release 页面下载：
 
-[PromptDock v1.0](https://github.com/wuyunjun-dev/prompt-dock/releases/tag/v1.0)
+[PromptDock v1.1](https://github.com/wuyunjun-dev/prompt-dock/releases/tag/v1.1)
 
-推荐下载：
+macOS 推荐下载：
 
 - `PromptDock-1.0.dmg`：打开后将 `PromptDock.app` 拖入 `Applications`。
 - `PromptDock-1.0.zip`：备用压缩包，解压后手动放入 `Applications`。
+
+Windows 推荐下载：
+
+- `PromptDock-Windows-1.1-x64.zip`：解压后运行 `PromptDock-win32-x64/PromptDock.exe`。
 
 当前发布包使用本地 adhoc 签名，尚未使用 Apple Developer ID 签名和公证。因此在其他 Mac 上首次打开时，macOS 可能提示“无法验证开发者”。
 
@@ -51,7 +55,7 @@ PromptDock 是一个原生 macOS 菜单栏应用，用于把零散想法、Bug �
 
 也可以在“系统设置”里的“隐私与安全性”页面允许打开。
 
-## 系统要求
+## macOS 系统要求
 
 - macOS 14 或更新版本。
 - 当前 Release 包主要面向 Apple Silicon Mac。
@@ -106,7 +110,47 @@ Authorization: Bearer <API_KEY>
 
 请注意：历史记录包含原始输入和优化后的提示词，目前未加密。处理敏感内容后，可以在设置中清空历史，或在历史页删除指定记录。
 
-## 从源码运行
+## Windows 版
+
+仓库内包含独立的 Windows 版本源码，位置：
+
+```text
+windows/
+```
+
+Windows 版使用 Electron 实现，提供系统托盘、`Ctrl + Alt + P` 全局快捷键、中文界面、OpenAI-compatible API 调用、历史记录，以及使用 Windows DPAPI 加密保存 API Key。
+
+在 Windows 上运行：
+
+```powershell
+cd windows
+npm install
+npm start
+```
+
+运行 Windows 版测试：
+
+```powershell
+cd windows
+npm test
+```
+
+打包 Windows x64 可执行目录：
+
+```powershell
+cd windows
+npm run package:win
+```
+
+产物会输出到：
+
+```text
+windows/dist/PromptDock-win32-x64/
+```
+
+当前 Windows 版未做代码签名，也还不是 MSI/NSIS 安装器。正式分发前建议增加 Windows 代码签名和安装器。
+
+## 从源码运行 macOS 版
 
 克隆仓库：
 

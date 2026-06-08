@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PromptDock</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">P</div>
+        <div>
+          <h1>PromptDock</h1>
+          <p>面向 AI 编程助手的提示词优化器</p>
+        </div>
+      </div>
+      <button id="settingsButton" class="icon-button" title="设置">⚙</button>
+    </header>
+
+    <main class="shell">
+      <nav class="tabs" aria-label="主导航">
+        <button class="tab active" data-tab="optimize">优化</button>
+        <button class="tab" data-tab="history">历史</button>
+      </nav>
+
+      <section id="optimizePanel" class="panel active">
+        <div class="toolbar">
+          <label>
+            模式
+            <select id="modeSelect"></select>
+          </label>
+          <label>
+            目标工具
+            <select id="targetSelect"></select>
+          </label>
+        </div>
+
+        <div class="editor-grid">
+          <label class="editor-label">
+            原始输入
+            <textarea id="rawInput" placeholder="输入想法、任务、报错信息或需要优化的提示词"></textarea>
+          </label>
+          <label class="editor-label">
+            优化结果
+            <textarea id="optimizedOutput" readonly placeholder="优化后的提示词会显示在这里"></textarea>
+          </label>
+        </div>
+
+        <div id="message" class="message" role="status"></div>
+
+        <div class="actions">
+          <button id="optimizeButton" class="primary">优化</button>
+          <button id="clipboardButton">优化剪贴板</button>
+          <button id="copyButton">复制结果</button>
+          <button id="saveHistoryButton">保存历史</button>
+          <button id="clearButton">清空</button>
+        </div>
+      </section>
+
+      <section id="historyPanel" class="panel">
+        <div class="history-header">
+          <h2>历史记录</h2>
+          <div class="history-actions">
+            <button id="selectAllHistoryButton">全选</button>
+            <button id="deleteSelectedButton" class="danger" disabled>删除所选</button>
+            <button id="reloadHistoryButton">刷新</button>
+          </div>
+        </div>
+        <div id="historyList" class="history-list"></div>
+      </section>
+    </main>
+
+    <dialog id="settingsDialog">
+      <form method="dialog" class="settings-form">
+        <div class="dialog-header">
+          <h2>设置</h2>
+          <button id="closeSettingsButton" class="icon-button" value="cancel" title="关闭">×</button>
+        </div>
+
+        <label>API 提供方名称<input id="providerName" type="text"></label>
+        <label>基础 URL<input id="baseURL" type="url"></label>
+        <label>API Key<input id="apiKey" type="password" autocomplete="off"></label>
+        <p id="apiKeyHint" class="hint"></p>
+        <label>模型名称<input id="modelName" type="text"></label>
+
+        <div class="two-col">
+          <label>温度<input id="temperature" type="number" min="0" max="2" step="0.05"></label>
+          <label>最大 Token 数<input id="maxTokens" type="number" min="1" step="100"></label>
+        </div>
+
+        <label>
+          额外请求头
+          <textarea id="extraHeaders" class="headers-editor" placeholder="Name: Value"></textarea>
+        </label>
+        <p class="hint">每行一个请求头，格式为 Name: Value。Authorization 请求头由 PromptDock 自动管理。</p>
+
+        <div id="settingsMessage" class="message" role="status"></div>
+
+        <div class="dialog-actions">
+          <button id="saveSettingsButton" class="primary" type="button">保存</button>
+          <button id="testConnectionButton" type="button">测试连接</button>
+          <button id="clearAPIKeyButton" class="danger" type="button">清除 API Key</button>
+          <button id="clearHistoryButton" class="danger" type="button">清空历史</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

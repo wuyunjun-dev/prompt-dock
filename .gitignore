@@ -7,3 +7,9 @@ xcuserdata/
 
 DerivedData/
 build/
+
+node_modules/
+windows/dist/
+windows/out/
+windows/*.log
+npm-debug.log*

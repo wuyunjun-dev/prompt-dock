@@ -1,0 +1,17 @@
+{
+  "name": "promptdock-windows",
+  "version": "1.1.0",
+  "description": "PromptDock Windows tray app for optimizing prompts with OpenAI-compatible APIs.",
+  "private": true,
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test",
+    "package:win": "node scripts/package-win.js --arch=x64",
+    "package:win:arm64": "node scripts/package-win.js --arch=arm64"
+  },
+  "devDependencies": {
+    "@electron/get": "^3.1.0",
+    "electron": "^42.3.3"
+  }
+}
